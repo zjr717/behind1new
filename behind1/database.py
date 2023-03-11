@@ -1,13 +1,13 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+db = SQLAlchemy(session_options={"autocommit": False, "autoflush": False})
 
 
 class User_bg(db.Model):
     __tablename__ = 'user_bg'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255), unique=True)
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
+    username = db.Column(db.String(255), primary_key=True)
     password_hash = db.Column(db.String(255))
 
     def __init__(self, username, password):
@@ -19,3 +19,8 @@ class User_bg(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
+
+
+def init_db(app):
+    with app.app_context():
+        db.create_all()

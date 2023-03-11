@@ -1,6 +1,6 @@
 from flask import request, Blueprint, jsonify, current_app
-from 后端组一轮作业.database import db
-from 后端组一轮作业.search.models import SearchHistory
+from behind1.database import db
+from behind1.search.models import SearchHistory
 import requests
 import jwt
 

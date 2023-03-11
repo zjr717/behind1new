@@ -1,5 +1,5 @@
 from datetime import datetime
-from 后端组一轮作业.database import db
+from behind1.database import db
 
 
 class SearchHistory(db.Model):

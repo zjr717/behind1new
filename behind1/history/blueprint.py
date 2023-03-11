@@ -1,7 +1,7 @@
 from flask import Blueprint
-from 后端组一轮作业.search import views
+from behind1.history import views
 
 user_blueprint = Blueprint('user', __name__, url_prefix='/search')
 config = [
-    (views.search_bp, '/')
+    (views.history_bp, '/')
 ]

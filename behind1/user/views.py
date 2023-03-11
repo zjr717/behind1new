@@ -1,8 +1,7 @@
 from flask import request, Blueprint, jsonify
 import jwt
 import time
-from 后端组一轮作业.database import db
-from .models import User_bg
+from behind1.database import User_bg, db
 
 user_bp = Blueprint('user_bp', __name__)
 
@@ -21,12 +20,11 @@ def register():
         return jsonify(code=403, message='前后两次输入密码不一致！')
 
     user = User_bg(username=username, password=password)
+    db.session.add(user)
     try:
-        db.session.add(user)
         db.session.commit()
     except Exception as e:
-        db.session.rollback()
-        return jsonify(code=500, message='注册失败！', data={'error': str(e)})
+        print(e)
 
     return jsonify(code=200, message='success', data={'id': user.id, 'username': user.username})
 
