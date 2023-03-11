@@ -1,7 +1,8 @@
 from flask import request, Blueprint, jsonify
 import jwt
 import time
-from behind1.database import User_bg, db
+from behind1.database import db
+from .models import User_bg
 
 user_bp = Blueprint('user_bp', __name__)
 
@@ -21,14 +22,13 @@ def register():
 
     user = User_bg(username=username, password=password)
     db.session.add(user)
-    try:
-        db.session.commit()
-    except Exception as e:
-        print(e)
+    db.session.commit()
+
 
     return jsonify(code=200, message='success', data={'id': user.id, 'username': user.username})
 
 
+@user_bp.route('/login', methods=['POST'])
 @user_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -41,7 +41,7 @@ def login():
     user = User_bg.query.filter_by(username=username).first()
     if user and user.check_password(password):
         payload = {'name': username, 'exp': int(time.time()) + 36000}
-        token = jwt.encode(payload, 'secret_key', algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, 'secret_key', algorithm='HS256')
         return jsonify(code=200, message='success', data={'username': username, 'token': token})
     else:
         return jsonify(code=403, message='登录失败！请检查账号或密码是否正确。')

@@ -10,12 +10,8 @@ search_bp = Blueprint('search_bp', __name__)
 # Token 验证装饰器
 def token_required(f):
     def decorated(*args, **kwargs):
-        try:
-            token = request.headers['Authorization']
-            jwt.decode(token, '123456', algorithms=['HS256'])
-
-        except:
-            return jsonify(code=403, message='无法检验token，请尝试重新登陆')
+        token = request.headers.get('Authorization')
+        jwt.decode(token, '123456', algorithms=['HS256'])
 
         return f(*args, **kwargs)
 

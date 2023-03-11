@@ -1,3 +1,5 @@
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 class Config(object):
     HOST = 'localhost'
     PORT = '3306'
@@ -7,7 +9,7 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
-    SECRET_KEY = '123'
+    SECRET_KEY = '123456'
 
 class DevelopmentConfig(Config):
     DEBUG = True
