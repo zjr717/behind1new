@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>买家中心</title>
+  </head>
+  <body>
+    <h1>欢迎来到买家中心，{{ buyer.name }}</h1>
+    <p>您的订单数量：{{ buyer.order_count }}</p>
+    <p>总消费金额：{{ buyer.total_spend }}</p>
+    <p>平均订单价值：{{ buyer.average_order_value }}</p>
+    {% if buyer.favorite_category %}
+      <p>偏好分类：{{ buyer.favorite_category }}</p>
+    {% endif %}
+    {% if buyer.last_purchase_date %}
+      <p>最后购买日期：{{ buyer.last_purchase_date.strftime('%Y-%m-%d') }}</p>
+    {% endif %}
+    {% if buyer.address %}
+      <p>送货地址：{{ buyer.address }}</p>
+    {% endif %}
+  </body>
+</html>

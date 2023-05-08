@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seller Center</title>
+</head>
+<body>
+    <h1>欢迎来到买家中心，{{ seller.name }}</h1>
+    <p>出售商品数量：{{ seller.merchandise_count }}</p>
+    <p>出售商品总销量：{{ seller.total_sales }}</p>
+    <p>本月出售商品销量：{{ seller.month_sales }}</p>
+    <p>本年出售商品销量：{{ seller.year_sales }}</p>
+    <p>出售商品平均价格：{{ seller.average_price }}</p>
+    <p>最高出价：{{ seller.highest_bid }}</p>
+    <p>已完成订单数：{{ seller.completed_orders }}</p>
+</body>
+</html>

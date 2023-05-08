@@ -2,7 +2,9 @@ from user import user
 import weakref
 from mysql import app
 from center.self_center.views import bp as profile_bp
-from center.self_center.models import db
+from center.self_center.models import db as profile_db
+from center.seller_center.views import bp as seller_bp
+from center.seller_center.models import db as seller_db
 
 # ==============================================================#
 # 创建一个Flask应用实例对象
@@ -10,8 +12,10 @@ from center.self_center.models import db
 # app = Flask(__name__)
 app_ref = weakref.ref(app)
 app.register_blueprint(user)  # 注册蓝图
-db.init_app(app)
+profile_db.init_app(app)
 app.register_blueprint(profile_bp)
+seller_db.init_app(app)
+app.register_blueprint(seller_bp)
 
 # ==============================================================#
 if __name__ == '__main__':
