@@ -5,10 +5,10 @@ from .models import db, Seller
 bp = Blueprint('seller', __name__, url_prefix='/seller')
 
 
-@bp.route('/<int:Seller_id>')
-def Seller(Seller_id):
+@bp.route('/<int:seller_id>')
+def seller_info(seller_id):
     # 根据用户id查询用户信息
-    seller = Seller.query.filter_by(id=Seller_id).first()
+    seller = Seller.query.filter_by(id=seller_id).first()
     if not seller:
         return '用户不存在'
     return render_template('seller_center.html', user=seller)

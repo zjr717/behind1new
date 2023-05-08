@@ -5,6 +5,8 @@ from center.self_center.views import bp as profile_bp
 from center.self_center.models import db as profile_db
 from center.seller_center.views import bp as seller_bp
 from center.seller_center.models import db as seller_db
+from center.buyer_center.views import bp as buyer_bp
+from center.buyer_center.models import db as buyer_db
 
 # ==============================================================#
 # 创建一个Flask应用实例对象
@@ -16,6 +18,8 @@ profile_db.init_app(app)
 app.register_blueprint(profile_bp)
 seller_db.init_app(app)
 app.register_blueprint(seller_bp)
+buyer_db.init_app(app)
+app.register_blueprint(buyer_bp)
 
 # ==============================================================#
 if __name__ == '__main__':
