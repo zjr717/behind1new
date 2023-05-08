@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile</title>
+</head>
+<body>
+<div class="container">
+    <h1>个人信息</h1>
+    <p>用户名: {{ user.username }}</p>
+    {% if user.real_name %}
+        <p>真实姓名：{{user.real_name}}</p>
+    {% endif %}
+    {% if user.email %}
+        <p>邮箱：{{user.email}}</p>
+    {% endif %}
+    {% if user.phone_number %}
+        <p>手机号：{{user.phone_number}}</p>
+    {% endif %}
+    {% if user.last_time %}
+        <p>最后登录时间：{{user.last_time.strftime('%Y-%m-%d %H:%M:%S')}}</p>
+    {% endif %}
+    {% if user.profile_image%}
+        <img src="{{ user.profile_image }}" alt="头像">
+    {% else %}
+        <p>头像：</p>
+    {% endif %}
+</div>
+</body>
+</html>
